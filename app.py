@@ -105,5 +105,20 @@ def stats():
     ects_results = db.execute(ects_query).fetchall()
     return render_template('stats.html', avg_results=avg_results, ects_results=ects_results)
 
+@app.route('/hello2')
+def hello2():
+    name = request.args.get('name', 'World')
+    return render_template('hello.html.j2', name=name)
+
+@app.after_request
+def add_security_headers(response): 
+    policy = (
+        "default-src 'self' https://cdn.jsdelivr.net; "
+        "script-src 'self'; "
+        "style-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'"
+    )
+    response.headers['Content-Security-Policy'] = policy
+    return response
+
 if __name__ == '__main__':
     app.run(debug=True)
