@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add New Grade</h2>
+<form method="post">
+    <div class="mb-3">
+        <label>Student:</label>
+        <select name="id_student" class="form-select">
+            {% for s in students %}
+            <option value="{{ s.id }}">{{ s.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Course:</label>
+        <select name="id_course" class="form-select">
+            {% for c in courses %}
+            <option value="{{ c.id }}">{{ c.title }} (Sem: {{ c.semester }})</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Value:</label>
+        <input type="number" name="value" class="form-control" required min="0" max="100">
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+{% endblock %}

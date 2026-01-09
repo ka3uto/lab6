@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Students List</h2>
+<table class="table table-striped">
+    <thead><tr><th>ID</th><th>Name</th><th>Action</th></tr></thead>
+    <tbody>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.id }}</td>
+            <td>{{ s.name }}</td>
+            <td><a href="{{ url_for('student_grades', id_student=s.id) }}" class="btn btn-info btn-sm">View Grades</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

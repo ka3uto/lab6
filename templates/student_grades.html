@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Grades for {{ student.name }}</h2>
+<table class="table table-striped">
+    <thead><tr><th>Course</th><th>Semester</th><th>Value</th><th>Action</th></tr></thead>
+    <tbody>
+        {% for g in grades %}
+        <tr>
+            <td>{{ g.title }}</td>
+            <td>{{ g.semester }}</td>
+            <td>{{ g.value }}</td>
+            <td>
+                <form action="{{ url_for('delete_grade', id=g.id) }}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('students') }}" class="btn btn-secondary">Back to Students</a>
+{% endblock %}
